@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Expense Tracker</title><link rel="stylesheet" href="style.css"></head><body>
+<section id="auth" hidden><div class="authbox"><h1>Expense Tracker</h1><p class="sub">Record what comes in and goes out, then see where it went.</p>
+<form id="authform"><input id="a-name" placeholder="Full name" autocomplete="name"><input id="a-email" type="email" placeholder="Email" required autocomplete="email"><input id="a-pw" type="password" placeholder="Password" required autocomplete="current-password"><p class="err" id="a-err" role="alert"></p><button id="a-submit">Log in</button></form>
+<button class="link" id="a-toggle" type="button">New here? Create an account</button></div></section>
+<div id="app" hidden>
+<nav><b>Expense Tracker</b><a href="#dashboard">Dashboard</a><a href="#add">Add transaction</a><a href="#history">History</a><a href="#reports">Reports</a><a href="#profile">Profile</a><span class="grow"></span><span id="who"></span><button class="link" id="logout">Log out</button></nav>
+<main>
+<section id="v-dashboard"><p class="label">Current balance</p><p class="big" id="d-balance"></p>
+<div class="pair"><div><p class="label">Total income</p><p class="num in" id="d-income"></p></div><div><p class="label">Total expenses</p><p class="num out" id="d-expense"></p></div></div>
+<p class="alert" id="d-alert" hidden role="status"></p><h2>Recent transactions</h2><table><tbody id="d-recent"></tbody></table></section>
+<section id="v-add" hidden><h2 id="f-title">Add transaction</h2>
+<form id="txform" class="form"><div class="seg"><label><input type="radio" name="type" value="expense" checked>Expense</label><label><input type="radio" name="type" value="income">Income</label></div>
+<label>Amount (₹)<input id="f-amount" type="number" step="0.01" min="0.01" required></label><label>Date<input id="f-date" type="date" required></label>
+<label>Category<select id="f-cat"></select></label><div class="inline"><input id="f-newcat" placeholder="New category"><button type="button" id="f-addcat" class="ghost">Add category</button></div>
+<label>Description<input id="f-desc" maxlength="200" placeholder="Optional"></label><p class="err" id="f-err" role="alert"></p><div class="inline"><button id="f-save">Save transaction</button><button type="button" class="ghost" id="f-cancel" hidden>Cancel edit</button></div></form></section>
+<section id="v-history" hidden><h2>Transaction history</h2><div class="filters"><input id="h-q" placeholder="Search description"><select id="h-type"><option value="">All types</option><option value="income">Income</option><option value="expense">Expense</option></select><select id="h-cat"></select><input id="h-from" type="date" aria-label="From date"><input id="h-to" type="date" aria-label="To date"><button class="ghost" id="h-export">Export CSV</button></div><table><tbody id="h-rows"></tbody></table></section>
+<section id="v-reports" hidden><h2>Reports</h2><div class="filters"><input id="r-from" type="date" aria-label="From date"><input id="r-to" type="date" aria-label="To date"><button class="ghost" id="r-all">All time</button></div>
+<div class="pair"><div><p class="label">Income</p><p class="num in" id="r-income"></p></div><div><p class="label">Expenses</p><p class="num out" id="r-expense"></p></div></div>
+<h3>Spending by category</h3><div id="r-cat"></div><h3>Income and expenses by month</h3><div id="r-month"></div></section>
+<section id="v-profile" hidden><h2>Profile</h2><form id="pform" class="form"><label>Name<input id="p-name" required></label><label>Email<input id="p-email" disabled></label><label>Monthly spending limit (₹, 0 for none)<input id="p-limit" type="number" min="0" step="1"></label><p class="err" id="p-err" role="alert"></p><button>Save profile</button></form></section>
+</main></div><script src="app.js"></script></body></html>
